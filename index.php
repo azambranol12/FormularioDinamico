@@ -1,4 +1,22 @@
+<?php
+    //Conecta con la base de datos
+	include 'configdb.php'; 
+	$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD); /
+	$conexion->set_charset("utf8"); 
 
+    //Desactiva errores
+	$controlador = new mysqli_driver();
+	$controlador->report_mode = MYSQLI_REPORT_OFF;
+
+    // Primera consulta
+    $sql_opcionesT = "SELECT id, texto FROM opcioneseleccion;";
+    $resultadoTurnos = $conexion->query($sql_opcionesT);
+
+    // Segunda consulta
+    $sql_opcionesC = "SELECT valor, etiqueta FROM opcionescontacto;";
+    $resultadoContacto = $conexion->query($sql_opcionesC);
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,21 +42,21 @@
             <fieldset>
                 <?php
                     echo'<legend>Forma de contactar contigo</legend>';
-                    foreach($contacto as $fcontacto => $valor) 
+                    while ($fila = $resultadoContacto->fetch_array())
                         {
-                        echo '<label><input type="checkbox" name="contacto[]" value="'.$fcontacto.'">'.$valor.'</label>';
+                        echo '<label><input type="checkbox" name="contacto[]" value="'.$fila["valor"].'">'.$fila["etiqueta"].'</label>';
                     }
-
                 ?>
             </fieldset>
             <fieldset>
                 <legend>Disponibilidad horaria</legend>
                 <select name="eleccion" value="eleccion">
                     <?php
-                    foreach($eleccion as $feleccion)
-                         {
-                            echo'<option>'.$feleccion.'</option>';
-                         }
+                        while ($fila1 = $resultadoTurnos->fetch_array())
+                            {
+                            echo'<option>'.$fila1["texto"].'</option>';
+                        }
+                        $conexion->close();
                     ?>
                 </select>
             </fieldset>
