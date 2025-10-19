@@ -1,0 +1,55 @@
+body {
+  padding: 20px;
+    font-family:  Arial, sans-serif;
+}
+form{
+    width: 20%;
+    height: 90%;
+    background-color: rgb(46, 145, 3);
+    margin: auto;
+    margin-top: 20px;
+    padding: 30px;
+    border: solid rgb(0, 77, 10) 0.5px;
+    border-radius: 6px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+}
+
+fieldset{
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid rgba(0, 77, 10, 0.7);
+  border-radius: 6px;
+}
+
+legend{
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+button {
+  margin-top: 10px;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 77, 10, 0.7);
+  background-color: white;
+  color: #000;
+  margin-bottom: 15px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgb(0, 100, 0);
+  color: white;
+  font-weight: bold;
+}
