@@ -1,7 +1,7 @@
 <?php
     //Conecta con la base de datos
 	include 'configdb.php'; 
-	$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD); /
+	$conexion = new mysqli(SERVIDOR, USUARIO, PASSWORD, BBDD);
 	$conexion->set_charset("utf8"); 
 
     //Desactiva errores
@@ -16,6 +16,9 @@
     $sql_opcionesC = "SELECT valor, etiqueta FROM opcionescontacto;";
     $resultadoContacto = $conexion->query($sql_opcionesC);
 
+    echo $sql_opcionesT;
+    echo $sql_opcionesC;
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +29,7 @@
     </head>
 <body>
     <div class="formu" >
-        <form method="POST" action="RecogerDatos.php">
+        <form method="POST" action="recogerDatos.php">
             <fieldset>
                 <legend>Datos personales</legend>
                 <label>Nombre: <input type="text" name="nombre"></label>
@@ -42,7 +45,7 @@
             <fieldset>
                 <?php
                     echo'<legend>Forma de contactar contigo</legend>';
-                    while ($fila = $resultadoContacto->fetch_array())
+                    while ($fila = $resultadoContacto->fetch_assoc())
                         {
                         echo '<label><input type="checkbox" name="contacto[]" value="'.$fila["valor"].'">'.$fila["etiqueta"].'</label>';
                     }
@@ -52,7 +55,7 @@
                 <legend>Disponibilidad horaria</legend>
                 <select name="eleccion" value="eleccion">
                     <?php
-                        while ($fila1 = $resultadoTurnos->fetch_array())
+                        while ($fila1 = $resultadoTurnos->fetch_assoc())
                             {
                             echo'<option>'.$fila1["texto"].'</option>';
                         }
@@ -66,7 +69,7 @@
             </fieldset>
             <fieldset>
                 <legend>Aceptas los terminos</legend>
-                <label><input type="checkbox" name="condiciones" value="condiciones"></input></label>
+                <label><input type="checkbox" name="condiciones" value="condiciones" required></input></label>
             </fieldset>
 
             <button type="submit">Enviar</button>
