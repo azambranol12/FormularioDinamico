@@ -1,36 +1,39 @@
 
---Creamos las tablas donde se extrae la informacion del select y del checkbox se hace para los dos de la misma manera
+-- Tabla de contactos (checkbox)
 CREATE TABLE opcionesContacto(
     id smallint unsigned AUTO_INCREMENT PRIMARY KEY,
-    valor varchar(100) NOT NULL,
-    etiqueta varchar(100) NOT NULL
+    valor VARCHAR(100) NOT NULL UNIQUE,
+    etiqueta VARCHAR(100) NOT NULL
 );
 
+-- Tabla de opciones de selección (select)
 CREATE TABLE opcionesEleccion(
     id smallint unsigned AUTO_INCREMENT PRIMARY KEY,
     texto varchar(100) NOT NULL
 );
 
---Creamos las dos tablas para guardas los datos del formulario por un lado usuario y por otro el contacto
-CREATE TABLE usuarios(
-    id smallint unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--Tabla de usuarios
+CREATE TABLE usuarios (
+    id smallint unsigned AUTO_INCREMENT PRIMARY KEY,
     nombre varchar(100) NOT NULL,
     apellido varchar(100) NOT NULL,
     contrasenia varchar(255) NOT NULL,
     accion varchar(50) NOT NULL,
     comentario varchar(300) NOT NULL,
     horarioId smallint unsigned NOT NULL,
-    fechaRegistro timestamp DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (horario_id) REFERENCES opcioneseleccion(id)
+    fechaRegistro timestamp default CURRENT_TIMESTAMP,
+    FOREIGN KEY (horarioId) REFERENCES opcionesEleccion(id)
 );
 
-CREATE TABLE usuarioContacto(
-    id smallint unsigned NOT NULL AUTO_INCREMENT,
+--Relación usuario y contacto
+CREATE TABLE usuarioContacto (
     usuarioId smallint unsigned NOT NULL,
-    PRIMARY KEY (id, usuarioId),
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
-    FOREIGN KEY (contacto_valor) REFERENCES opcionescontacto(valor) ON DELETE CASCADE,
+    contactoValor varchar(100) NOT NULL,
+    PRIMARY KEY (usuarioId, contactoValor),
+    FOREIGN KEY (usuarioId) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (contactoValor) REFERENCES opcionesContacto(valor) ON DELETE CASCADE
 );
+
 
 --Esta es la información que le he añadido a las tablas
 -- Opciones de contacto

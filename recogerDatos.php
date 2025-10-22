@@ -15,6 +15,11 @@
     $contrasenia = isset($_POST["contrasenia"]) ? trim(string: $_POST["contrasenia"]) : '';
     $accion = isset($_POST["accion"]) ? trim(string: $_POST["accion"]) : '';
     $eleccion = isset($_POST["eleccion"]) ? trim(string: $_POST["eleccion"]) : '';
+    $comentario = isset($_POST["comentario"]) ? trim(string: $_POST["comentario"]) : '';
+    $contacto = isset($_POST['contacto']) ? $_POST['contacto'] : [];
+
+
+
 
     echo $eleccion;
 
@@ -24,10 +29,18 @@
         exit();
     }
 
-    $sql_Insertar = "INSERT INTO usuarios (nombre, apellido, contrasenia, accion, horarioId) VALUES ('$nombre', '$apellido', '$contrasenia', '$accion','$eleccion');";
+    $sql_Insertar = "INSERT INTO usuarios (nombre, apellido, contrasenia, accion, horarioId, comentario) VALUES ('$nombre', '$apellido', '$contrasenia', '$accion','$eleccion','$comentario');";
+    echo $sql_Insertar;
     $resultadoContacto = $conexion->query($sql_Insertar);
 
-    echo $sql_Insertar;
 
-    $conexion->close();
+    $usuarioId = $conexion->insert_id;
+    foreach ($contacto as $valor) {
+        $sql_contacto = "INSERT INTO usuarioContacto (usuarioId, contactoValor)VALUES ('$usuarioId', '$valor')";
+        $resultadoUsuContacto = $conexion->query($sql_contacto);
+        echo $sql_contacto;
+    }
+
+
+    $conexion->close(); 
 ?>

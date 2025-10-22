@@ -57,7 +57,7 @@
                     <?php
                         while ($fila1 = $resultadoTurnos->fetch_assoc())
                             {
-                            echo'<option>'.$fila1["texto"].'</option>';
+                            echo'<option value='.$fila1["id"].'>'.$fila1["texto"].'</option>';
                         }
                         $conexion->close();
                     ?>
