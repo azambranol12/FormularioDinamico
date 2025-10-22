@@ -54,6 +54,7 @@
             <fieldset>
                 <legend>Disponibilidad horaria</legend>
                 <select name="eleccion" value="eleccion">
+                    <option value="blanco"></option>
                     <?php
                         while ($fila1 = $resultadoTurnos->fetch_assoc())
                             {
