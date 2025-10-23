@@ -9,7 +9,7 @@
 	$controlador->report_mode = MYSQLI_REPORT_OFF;
 
     // Primera consulta
-    $sql_opcionesT = "SELECT id, texto FROM opcioneseleccion;";
+    $sql_opcionesT = "SELECT idEleccion, texto FROM opcioneseleccion;";
     $resultadoTurnos = $conexion->query($sql_opcionesT);
 
     // Segunda consulta
@@ -58,7 +58,7 @@
                     <?php
                         while ($fila1 = $resultadoTurnos->fetch_assoc())
                             {
-                            echo'<option value='.$fila1["id"].'>'.$fila1["texto"].'</option>';
+                            echo'<option value='.$fila1["idEleccion"].'>'.$fila1["texto"].'</option>';
                         }
                         $conexion->close();
                     ?>

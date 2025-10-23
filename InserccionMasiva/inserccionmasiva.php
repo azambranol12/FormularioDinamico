@@ -35,7 +35,7 @@
         apellido varchar(100) NOT NULL,
         contrasenia varchar(255) NOT NULL,
         accion varchar(50) NOT NULL,
-        comentario varchar(300) NOT NULL,
+        comentario varchar(300) NULL,
         horarioId smallint unsigned NOT NULL,
         fechaRegistro timestamp default CURRENT_TIMESTAMP,
         FOREIGN KEY (horarioId) REFERENCES opcionesEleccion(idEleccion)

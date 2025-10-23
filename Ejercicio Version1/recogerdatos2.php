@@ -36,7 +36,7 @@ en el caso de que lo tenga guarda en la variable nada y asi después puedo valid
 
     $usuarioId = $conexion->insert_id; //El insert nos sirve para añadir el id recien usado en la anterior consulta
     foreach ($contacto as $valor) { //Ni si quiera entra en el foreach por no poner nada 
-        $sql_contacto = "INSERT INTO usuarioContacto (usuarioId, contactoValor) VALUES ('$usuarioId', '$valor')";
+        $sql_contacto = "INSERT INTO usuarioContacto (idUsuario, valor) VALUES ('$usuarioId', '$valor')";
         $resultadoUsuContacto = $conexion->query($sql_contacto);
         echo $sql_contacto.'</br>';
     }
